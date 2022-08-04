@@ -13,9 +13,3 @@ general:
   donation_url: false
   contact_url: false
   enable_metrics: false
-
-brand:
-  issue_url: "https://github.com/searxng/searxng/issues"
-  docs_url: "https://docs.searxng.org"
-  public_instances: "https://searx.space"
-  wiki_url: "https://github.com/searxng/searxng/wiki"

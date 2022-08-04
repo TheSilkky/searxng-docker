@@ -30,18 +30,24 @@ patch_searxng_settings() {
     sed -i -e "s|donation_url: false|donation_url: \"${DONATION_URL}\"|g" "${CONF}"
   fi
 
-  # Brand Settings
-  if [[ -v ISSUE_URL ]]; then
-    sed -i -e "s|issue_url: \"https://github.com/searxng/searxng/issues\"|issue_url: \"${ISSUE_URL}\"|g" "${CONF}"
-  fi
-  if [[ -v DOCS_URL ]]; then
-    sed -i -e "s|docs_url: \"https://docs.searxng.org\"|issue_url: \"${ISSUE_URL}\"|g" "${CONF}"
-  fi
-  if [[ -v PUBLIC_INSTANCES_URL ]]; then
-    sed -i -e "s|public_instances: \"https://searx.space\"|public_instances: \"${PUBLIC_INSTANCES_URL}\"|g" "${CONF}"
-  fi
-  if [[ -v WIKI_URL ]]; then
-    sed -i -e "s|wiki_url: \"https://github.com/searxng/searxng/wiki\"|wiki_url: \"${WIKI_URL}\"|g" "${CONF}"
+  if [[ -v CUSTOM_BRAND ]] && [[ "${CUSTOM_BRAND}" == "true" ]]; then
+    DEFAULT_ISSUE_URL="https://github.com/searxng/searxng/issues"
+    ISSUE_URL="${ISSUE_URL:-${DEFAULT_ISSUE_URL}}"
+    DEFAULT_DOCS_URL="https://docs.searxng.org"
+    DOCS_URL="${DOCS_URL:-${DEFAULT_DOCS_URL}}"
+    DEFAULT_PUBLIC_INSTANCES_URL="https://searx.space"
+    PUBLIC_INSTANCES_URL="${PUBLIC_INSTANCES_URL:-${DEFAULT_PUBLIC_INSTANCES_URL}}"
+    DEFAULT_WIKI_URL="https://github.com/searxng/searxng/wiki"
+    WIKI_URL="${WIKI_URL:-${DEFAULT_WIKI_URL}}"
+
+    cat >> "${CONF}" <<EOF
+
+brand:
+  issue_url: "${ISSUE_URL}"
+  docs_url: "${DOCS_URL}"
+  public_instances: ${PUBLIC_INSTANCES_URL}"
+  wiki_url: "${WIKI_URL}"
+EOF
   fi
 
   # Redis Settings
