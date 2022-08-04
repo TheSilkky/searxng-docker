@@ -76,7 +76,7 @@ EOF
 
 outgoing:
   request_timeout: ${REQUEST_TIMEOUT}
-  useragent_suffix: "${DEFAULT_USERAGENT_SUFFIX}"
+  useragent_suffix: "${USERAGENT_SUFFIX}"
   pool_connections: ${POOL_CONNECTIONS}
   pool_maxsize: ${POOL_MAXSIZE}
   enable_http2: ${ENABLE_HTTP2}
