@@ -47,7 +47,6 @@ RUN apk add --no-cache \
     openssl \
     uwsgi \
     uwsgi-python3 \
-    bash \
     tini
 
 WORKDIR /searxng
