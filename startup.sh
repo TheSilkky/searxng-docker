@@ -143,15 +143,6 @@ brand:
 EOF
   fi
 
-  # Redis Settings
-  if [ -n "${REDIS_URL}" ]; then
-    cat >> "${CONF}" <<EOF
-
-redis:
-  url: "${REDIS_URL}"
-EOF
-  fi
-
   # Outgoing settings
   if [ -n "${CUSTOM_OUTGOING}" ] && [ "${CUSTOM_OUTGOING}" = "true" ]; then
     DEFAULT_REQUEST_TIMEOUT="3.0"
@@ -188,6 +179,15 @@ EOF
 EOF
       done
     fi
+  fi
+
+  # Redis Settings
+  if [ -n "${REDIS_URL}" ]; then
+    cat >> "${CONF}" <<EOF
+
+redis:
+  url: "${REDIS_URL}"
+EOF
   fi
 }
 
