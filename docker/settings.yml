@@ -1,0 +1,21 @@
+use_default_settings: true
+
+server:
+  secret_key: "SECRET_KEY"
+  base_url: false
+  limiter: false
+  image_proxy: false
+
+general:
+  debug: false
+  instance_name: "SearXNG"
+  privacypolicy_url: false
+  donation_url: false
+  contact_url: false
+  enable_metrics: false
+
+brand:
+  issue_url: "https://github.com/searxng/searxng/issues"
+  docs_url: "https://docs.searxng.org"
+  public_instances: "https://searx.space"
+  wiki_url: "https://github.com/searxng/searxng/wiki"
