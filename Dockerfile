@@ -49,21 +49,20 @@ RUN apk add --no-cache \
     uwsgi-python3 \
     tini
 
+RUN pip install --upgrade pip
+
 WORKDIR /searxng
 
 COPY --from=builder /searxng/searx /searxng/searx
 COPY --from=builder /searxng/wheels /searxng/wheels
 COPY --from=builder /searxng/requirements.txt /searxng/requirements.txt
 COPY --from=builder /searxng/VERSION /searxng/VERSION
-
 COPY /uwsgi.ini /searxng/uwsgi.ini
 COPY /settings.yml /searxng/settings.yml
 COPY /startup.sh /searxng/startup.sh
 
-RUN pip install --upgrade pip
-
 # Add an unprivileged user and set directory permissions
-RUN adduser --disabled-password --gecos "" searxng \
+RUN adduser --disabled-password --gecos "" --home /searxng searxng \
     && chown -R searxng:searxng /searxng \
     && chmod +x /searxng/startup.sh
 
@@ -80,9 +79,8 @@ EXPOSE 8080
 
 STOPSIGNAL SIGTERM
 
-# Image metadata
-LABEL org.opencontainers.image.title="SearXNG"
-LABEL org.opencontainers.image.description="SearXNG is a free internet metasearch engine which aggregates results from various search services and databases. Users are neither tracked nor profiled."
-LABEL org.opencontainers.image.url="https://docs.searxng.org/"
-LABEL org.opencontainers.image.licenses="AGPL-3.0-or-later"
-LABEL org.opencontainers.image.source="https://github.com/TheSilkky/searxng-docker"
+LABEL org.opencontainers.image.title="SearXNG" \
+      org.opencontainers.image.description="SearXNG is a free internet metasearch engine which aggregates results from various search services and databases. Users are neither tracked nor profiled." \
+      org.opencontainers.image.url="https://docs.searxng.org/" \
+      org.opencontainers.image.licenses="AGPL-3.0-or-later" \
+      org.opencontainers.image.source="https://github.com/TheSilkky/searxng-docker"
