@@ -49,17 +49,17 @@ RUN apk add --no-cache \
     uwsgi-python3 \
     tini
 
-RUN pip install --upgrade pip
-
 WORKDIR /searxng
 
-COPY --from=builder /searxng/searx /searxng/searx
-COPY --from=builder /searxng/wheels /searxng/wheels
-COPY --from=builder /searxng/requirements.txt /searxng/requirements.txt
+COPY --from=builder /searxng/searx/ /searxng/searx
 COPY --from=builder /searxng/VERSION /searxng/VERSION
-COPY /uwsgi.ini /searxng/uwsgi.ini
-COPY /settings.yml /searxng/settings.yml
-COPY /startup.sh /searxng/startup.sh
+COPY /config/ /searxng
+
+# Copy dependency wheels from builder stage
+COPY --from=builder /searxng/wheels/ /searxng/wheels
+COPY --from=builder /searxng/requirements.txt /searxng/requirements.txt
+
+RUN pip install --upgrade pip
 
 # Add an unprivileged user and set directory permissions
 RUN adduser --disabled-password --gecos "" --home /searxng searxng \
