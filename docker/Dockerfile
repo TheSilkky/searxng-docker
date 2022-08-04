@@ -77,6 +77,8 @@ ENTRYPOINT ["/sbin/tini", "--"]
 
 CMD ["/searxng/startup.sh"]
 
+EXPOSE 8080
+
 STOPSIGNAL SIGTERM
 
 # Image metadata

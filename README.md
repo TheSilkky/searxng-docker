@@ -1,0 +1,1 @@
+![SearXNG](https://raw.githubusercontent.com/TheSilkky/searxng-docker/main/assets/searxng.png)
