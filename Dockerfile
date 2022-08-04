@@ -56,9 +56,9 @@ COPY --from=builder /searxng/wheels /searxng/wheels
 COPY --from=builder /searxng/requirements.txt /searxng/requirements.txt
 COPY --from=builder /searxng/VERSION /searxng/VERSION
 
-COPY /docker/uwsgi.ini /searxng/uwsgi.ini
-COPY /docker/settings.yml /searxng/settings.yml
-COPY /docker/startup.sh /searxng/startup.sh
+COPY /uwsgi.ini /searxng/uwsgi.ini
+COPY /settings.yml /searxng/settings.yml
+COPY /startup.sh /searxng/startup.sh
 
 RUN pip install --upgrade pip
 
