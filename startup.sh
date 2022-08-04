@@ -30,6 +30,49 @@ patch_searxng_settings() {
     sed -i -e "s|donation_url: false|donation_url: \"${DONATION_URL}\"|g" "${CONF}"
   fi
 
+  # Search settings
+  if [ -n "${CUSTOM_SEARCH}" ] && [ "${CUSTOM_SEARCH}" = "true" ]; then
+    DEFAULT_SAFE_SEARCH="0"
+    SAFE_SEARCH="${SAFE_SEARCH:-${DEFAULT_SAFE_SEARCH}}"
+    DEFAULT_AUTOCOMPLETE=""
+    AUTOCOMPLETE="${AUTOCOMPLETE:-${DEFAULT_AUTOCOMPLETE}}"
+    DEFAULT_AUTOCOMPLETE_MIN="4"
+    AUTOCOMPLETE_MIN="${AUTOCOMPLETE_MIN:-${DEFAULT_AUTOCOMPLETE_MIN}}"
+    DEFAULT_DEFAULT_LANG=""
+    DEFAULT_LANG="${DEFAULT_LANG:-${DEFAULT_DEFAULT_LANG}}"
+    DEFAULT_BAN_TIME_ON_FAIL="5"
+    BAN_TIME_ON_FAIL="${BAN_TIME_ON_FAIL:-${DEFAULT_BAN_TIME_ON_FAIL}}"
+    DEFAULT_MAX_BAN_TIME_ON_FAIL="120"
+    MAX_BAN_TIME_ON_FAIL="${MAX_BAN_TIME_ON_FAIL:-${DEFAULT_MAX_BAN_TIME_ON_FAIL}}"
+
+    cat >> "${CONF}" << EOF
+
+search:
+  safe_search: ${SAFE_SEARCH}
+  autocomplete: "${AUTOCOMPLETE}"
+  autocomplete_min: ${AUTOCOMPLETE_MIN}
+  default_lang: "${DEFAULT_LANG}"
+  ban_time_on_fail: ${BAN_TIME_ON_FAIL}
+  max_ban_time_on_fail: ${MAX_BAN_TIME_ON_FAIL}
+  formats:
+    - html
+EOF
+
+    # Available languages
+    if [ -n "${AVAILABLE_LANGUAGES}" ]; then
+      cat >> "${CONF}" << EOF
+  languages:
+EOF
+      for i in $(echo "${AVAILABLE_LANGUAGES}" | sed "s|,| |g")
+      do
+        cat >> "${CONF}" << EOF
+    - "$i"
+EOF
+      done
+    fi
+  fi
+
+  # Brand Settings
   if [ -n "${CUSTOM_BRAND}" ] && [ "${CUSTOM_BRAND}" = "true" ]; then
     DEFAULT_ISSUE_URL="https://github.com/searxng/searxng/issues"
     ISSUE_URL="${ISSUE_URL:-${DEFAULT_ISSUE_URL}}"
@@ -82,6 +125,7 @@ outgoing:
   enable_http2: ${ENABLE_HTTP2}
 EOF
 
+    # Outgoing proxies
     if [ -n "${OUTGOING_PROXIES}" ]; then
       cat >> "${CONF}" << EOF
   proxies:
