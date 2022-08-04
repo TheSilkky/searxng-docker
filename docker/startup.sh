@@ -57,10 +57,13 @@ EOF
 export DEFAULT_SEARXNG_SETTINGS_PATH="/searxng/settings.yml"
 export SEARXNG_SETTINGS_PATH="${SEARXNG_SETTINGS_PATH:-${DEFAULT_SEARXNG_SETTINGS_PATH}}"
 
+export DEFAULT_BIND_ADDRESS="0.0.0.0:8080"
+export BIND_ADDRESS="${BIND_ADDRESS:-${DEFAULT_BIND_ADDRESS}}"
+
 patch_searxng_settings "${SEARXNG_SETTINGS_PATH}"
 
 SEARXNG_VERSION="$(<VERSION)"
 export SEARXNG_VERSION
 echo "SearXNG version ${SEARXNG_VERSION}"
 
-exec uwsgi --master --http-socket 0.0.0.0:8080 /searxng/uwsgi.ini
+exec uwsgi --master --http-socket "${BIND_ADDRESS}" /searxng/uwsgi.ini
