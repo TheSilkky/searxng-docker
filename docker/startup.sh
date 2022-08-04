@@ -58,6 +58,43 @@ redis:
   url: "${REDIS_URL}"
 EOF
   fi
+
+  # Outgoing Settings
+  if [[ -v CUSTOM_OUTGOING ]] && [[ "${CUSTOM_OUTGOING}" == "true" ]]; then
+    DEFAULT_REQUEST_TIMEOUT="3.0"
+    REQUEST_TIMEOUT="${REQUEST_TIMEOUT:-${DEFAULT_REQUEST_TIMEOUT}}"
+    DEFAULT_USERAGENT_SUFFIX=""
+    USERAGENT_SUFFIX="${USERAGENT_SUFFIX:-${DEFAULT_USERAGENT_SUFFIX}}"
+    DEFAULT_POOL_CONNECTIONS="100"
+    POOL_CONNECTIONS="${POOL_CONNECTIONS:-${DEFAULT_POOL_CONNECTIONS}}"
+    DEFAULT_POOL_MAXSIZE="20"
+    POOL_MAXSIZE="${POOL_MAXSIZE:-${DEFAULT_POOL_MAXSIZE}}"
+    DEFAULT_ENABLE_HTTP2="true"
+    ENABLE_HTTP2="${ENABLE_HTTP2:-${DEFAULT_ENABLE_HTTP2}}"
+
+    cat >> "${CONF}" << EOF
+
+outgoing:
+  request_timeout: ${REQUEST_TIMEOUT}
+  useragent_suffix: "${DEFAULT_USERAGENT_SUFFIX}"
+  pool_connections: ${POOL_CONNECTIONS}
+  pool_maxsize: ${POOL_MAXSIZE}
+  enable_http2: ${ENABLE_HTTP2}
+EOF
+
+    if [[ -v OUTGOING_PROXIES ]]; then
+      cat >> "${CONF}" << EOF
+  proxies:
+    all://:
+EOF
+      for i in $(echo "${OUTGOING_PROXIES}" | sed "s|,| |g")
+      do
+        cat >> "${CONF}" << EOF
+      - "$i"
+EOF
+      done
+    fi
+  fi
 }
 
 export DEFAULT_SEARXNG_SETTINGS_PATH="/searxng/settings.yml"
