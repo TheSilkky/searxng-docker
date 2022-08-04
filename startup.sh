@@ -5,7 +5,7 @@ patch_searxng_settings() {
 
   sed -i -e "s|SECRET_KEY|$(openssl rand -hex 32)|g" "${CONF}"
 
-  # Server Settings
+  # Server settings
   if [ -n "${BASE_URL}" ]; then
     sed -i -e "s|base_url: false|base_url: \"${BASE_URL}\"|g" "${CONF}"
   fi
@@ -16,7 +16,7 @@ patch_searxng_settings() {
     sed -i -e "s|image_proxy: false|image_proxy: true|g" "${CONF}"
   fi
 
-  # General Settings
+  # General settings
   if [ -n "${DEBUG}" ] && [ "${DEBUG}" = "true" ]; then
     sed -i -e "s|debug: false|debug: true|g" "${CONF}"
   fi
@@ -28,6 +28,46 @@ patch_searxng_settings() {
   fi
   if [ -n "${DONATION_URL}" ]; then
     sed -i -e "s|donation_url: false|donation_url: \"${DONATION_URL}\"|g" "${CONF}"
+  fi
+
+  # UI settings
+  if [ -n "${CUSTOM_UI}" ] && [ "${CUSTOM_UI}" = "true" ]; then
+    DEFAULT_STATIC_PATH=""
+    STATIC_PATH="${STATIC_PATH:-${DEFAULT_STATIC_PATH}}"
+    DEFAULT_STATIC_USE_HASH="false"
+    STATIC_USE_HASH="${STATIC_USE_HASH:-${DEFAULT_STATIC_USE_HASH}}"
+    DEFAULT_TEMPLATES_PATH=""
+    TEMPLATES_PATH="${TEMPLATES_PATH:-${DEFAULT_TEMPLATES_PATH}}"
+    DEFAULT_QUERY_IN_TITLE="false"
+    QUERY_IN_TITLE="${QUERY_IN_TITLE:-${DEFAULT_QUERY_IN_TITLE}}"
+    DEFAULT_INFINITE_SCROLL="false"
+    INFINITE_SCROLL=${INFINITE_SCROLL:-${DEFAULT_INFINITE_SCROLL}}
+    DEFAULT_DEFAULT_THEME="simple"
+    DEFAULT_THEME="${DEFAULT_THEME:-${DEFAULT_DEFAULT_THEME}}"
+    DEFAULT_CENTER_ALIGNMENT="false"
+    CENTER_ALIGNMENT="${CENTER_ALIGNMENT:-${DEFAULT_CENTER_ALIGNMENT}}"
+    DEFAULT_DEFAULT_LOCALE=""
+    DEFAULT_LOCALE="${DEFAULT_LOCALE:-${DEFAULT_DEFAULT_LOCALE}}"
+    DEFAULT_RESULTS_ON_NEW_TAB="false"
+    RESULTS_ON_NEW_TAB="${RESULTS_ON_NEW_TAB:-${DEFAULT_RESULTS_ON_NEW_TAB}}"
+    DEFAULT_SIMPLE_STYLE="auto"
+    SIMPLE_STYLE="${SIMPLE_STYLE:-${DEFAULT_SIMPLE_STYLE}}"
+
+    cat >> "${CONF}" << EOF
+
+ui:
+  static_path: "${STATIC_PATH}"
+  static_use_hash: ${STATIC_USE_HASH}
+  templates_path: "${TEMPLATES_PATH}"
+  query_in_title: ${QUERY_IN_TITLE}
+  infinite_scroll: ${INFINITE_SCROLL}
+  default_theme: "${DEFAULT_THEME}"
+  center_alignment: ${CENTER_ALIGNMENT}
+  default_locale: "${DEFAULT_LOCALE}"
+  results_on_new_tab: ${RESULTS_ON_NEW_TAB}
+  theme_args:
+    simple_style: "${SIMPLE_STYLE}"
+EOF
   fi
 
   # Search settings
@@ -72,7 +112,7 @@ EOF
     fi
   fi
 
-  # Brand Settings
+  # Brand settings
   if [ -n "${CUSTOM_BRAND}" ] && [ "${CUSTOM_BRAND}" = "true" ]; then
     DEFAULT_ISSUE_URL="https://github.com/searxng/searxng/issues"
     ISSUE_URL="${ISSUE_URL:-${DEFAULT_ISSUE_URL}}"
@@ -102,7 +142,7 @@ redis:
 EOF
   fi
 
-  # Outgoing Settings
+  # Outgoing settings
   if [ -n "${CUSTOM_OUTGOING}" ] && [ "${CUSTOM_OUTGOING}" = "true" ]; then
     DEFAULT_REQUEST_TIMEOUT="3.0"
     REQUEST_TIMEOUT="${REQUEST_TIMEOUT:-${DEFAULT_REQUEST_TIMEOUT}}"
