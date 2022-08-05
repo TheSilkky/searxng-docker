@@ -192,6 +192,11 @@ redis:
   url: "${REDIS_URL}"
 EOF
   fi
+
+  # Custom settings
+  if [ -n "${CUSTOM_SETTINGS_PATH}" ]; then
+    (printf "\n"; cat "${CUSTOM_SETTINGS_PATH}") >> "${CONF}"
+  fi
 }
 
 patch_searxng_settings "${SEARXNG_SETTINGS_PATH}"

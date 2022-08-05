@@ -74,3 +74,8 @@
 | Variable    | Description |
 |-------------|-------------|
 | `REDIS_URL` |             |
+
+### Custom settings
+| Variable               | Description |
+|------------------------|-------------|
+| `CUSTOM_SETTINGS_PATH` |             |
