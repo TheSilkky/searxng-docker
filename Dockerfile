@@ -15,7 +15,7 @@ RUN apk add --no-cache \
     openssl \
     brotli \
     git \
-    && pip install --upgrade pip wheel setuptools
+    && pip install --no-cache-dir --upgrade pip wheel setuptools
 
 ADD https://api.github.com/repos/searxng/searxng/git/refs/head /cachebreak
 RUN git clone https://github.com/searxng/searxng.git /searxng
@@ -24,8 +24,8 @@ WORKDIR /searxng
 
 RUN \
     # Create & install dependency wheels
-    pip wheel --wheel-dir=/searxng/wheels -r requirements.txt \
-    && pip install --no-index --find-links=/searxng/wheels -r requirements.txt \
+    pip wheel --no-cache-dir --wheel-dir=/searxng/wheels -r requirements.txt \
+    && pip install --no-cache-dir --no-index --find-links=/searxng/wheels -r requirements.txt \
     # Freeze SearXNG version
     && python3 -m searx.version freeze \
     # Compress static files
@@ -46,7 +46,7 @@ RUN apk add --no-cache \
     uwsgi \
     uwsgi-python3 \
     tini \
-    && pip install --upgrade pip setuptools
+    && pip install --no-cache-dir --upgrade pip setuptools
 
 WORKDIR /searxng
 
@@ -64,7 +64,7 @@ USER searxng
 COPY --from=builder /searxng/requirements.txt /searxng/requirements.txt
 COPY --from=builder /searxng/wheels/ /searxng/wheels
 # Install dependencies
-RUN pip install --user --no-index --find-links=/searxng/wheels -r requirements.txt
+RUN pip install --no-cache-dir --user --no-index --find-links=/searxng/wheels -r requirements.txt
 
 COPY --from=builder /searxng/searx/ /searxng/searx
 
