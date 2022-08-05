@@ -46,7 +46,7 @@ RUN apk add --no-cache \
     uwsgi \
     uwsgi-python3 \
     tini \
-    && pip install --upgrade pip
+    && pip install --upgrade pip setuptools
 
 WORKDIR /searxng
 
