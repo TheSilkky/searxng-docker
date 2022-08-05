@@ -44,7 +44,7 @@ patch_searxng_settings() {
   fi
 
   # UI settings
-  if [ -n "${CUSTOM_UI}" ] && [ "${CUSTOM_UI}" = "true" ]; then
+  if [ -n "${UI_SETTINGS}" ] && [ "${UI_SETTINGS}" = "true" ]; then
     DEFAULT_STATIC_PATH=""
     STATIC_PATH="${STATIC_PATH:-${DEFAULT_STATIC_PATH}}"
     DEFAULT_STATIC_USE_HASH="false"
@@ -84,7 +84,7 @@ EOF
   fi
 
   # Search settings
-  if [ -n "${CUSTOM_SEARCH}" ] && [ "${CUSTOM_SEARCH}" = "true" ]; then
+  if [ -n "${SEARCH_SETTINGS}" ] && [ "${SEARCH_SETTINGS}" = "true" ]; then
     DEFAULT_SAFE_SEARCH="0"
     SAFE_SEARCH="${SAFE_SEARCH:-${DEFAULT_SAFE_SEARCH}}"
     DEFAULT_AUTOCOMPLETE=""
@@ -126,7 +126,7 @@ EOF
   fi
 
   # Brand settings
-  if [ -n "${CUSTOM_BRAND}" ] && [ "${CUSTOM_BRAND}" = "true" ]; then
+  if [ -n "${BRAND_SETTINGS}" ] && [ "${BRAND_SETTINGS}" = "true" ]; then
     DEFAULT_ISSUE_URL="https://github.com/searxng/searxng/issues"
     ISSUE_URL="${ISSUE_URL:-${DEFAULT_ISSUE_URL}}"
     DEFAULT_DOCS_URL="https://docs.searxng.org"
@@ -147,7 +147,7 @@ EOF
   fi
 
   # Outgoing settings
-  if [ -n "${CUSTOM_OUTGOING}" ] && [ "${CUSTOM_OUTGOING}" = "true" ]; then
+  if [ -n "${OUTGOING_SETTINGS}" ] && [ "${OUTGOING_SETTINGS}" = "true" ]; then
     DEFAULT_REQUEST_TIMEOUT="3.0"
     REQUEST_TIMEOUT="${REQUEST_TIMEOUT:-${DEFAULT_REQUEST_TIMEOUT}}"
     DEFAULT_USERAGENT_SUFFIX=""
@@ -184,7 +184,7 @@ EOF
     fi
   fi
 
-  # Redis Settings
+  # Redis settings
   if [ -n "${REDIS_URL}" ]; then
     cat >> "${CONF}" <<EOF
 
