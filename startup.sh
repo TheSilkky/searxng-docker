@@ -115,8 +115,7 @@ EOF
       cat >> "${CONF}" << EOF
   languages:
 EOF
-      for i in $(echo "${AVAILABLE_LANGUAGES}" | sed "s|,| |g")
-      do
+      for i in $(echo "${AVAILABLE_LANGUAGES}" | sed "s|,| |g"); do
         cat >> "${CONF}" << EOF
     - "${i}"
 EOF
@@ -174,8 +173,7 @@ EOF
   proxies:
     all://:
 EOF
-      for i in $(echo "${OUTGOING_PROXIES}" | sed "s|,| |g")
-      do
+      for i in $(echo "${OUTGOING_PROXIES}" | sed "s|,| |g"); do
         cat >> "${CONF}" << EOF
       - "${i}"
 EOF
@@ -194,8 +192,7 @@ EOF
 
   # Custom settings
   if [ -n "${CUSTOM_SETTINGS}" ]; then
-    for i in $(echo "${CUSTOM_SETTINGS}" | sed "s|,| |g")
-    do
+    for i in $(echo "${CUSTOM_SETTINGS}" | sed "s|,| |g"); do
       (printf "\n"; cat "${i}") >> "${CONF}"
     done
   fi
