@@ -37,7 +37,10 @@ patch_searxng_settings() {
     sed -i -e "s|privacypolicy_url: false|privacypolicy_url: \"${PRIVACY_POLICY_URL}\"|g" "${CONF}"
   fi
   if [ -n "${DONATION_URL}" ]; then
-    sed -i -e "s|donation_url: false|donation_url: \"${DONATION_URL}\"|g" "${CONF}"
+    sed -i -e "s|donation_url: \"https://docs.searxng.org/donate.html\"|donation_url: \"${DONATION_URL}\"|g" "${CONF}"
+  fi
+  if [ -n "${CONTACT_URL}" ]; then
+    sed -i -e "s|contact_url: false|contact_url: \"${CONTACT_URL}\"|g" "${CONF}"
   fi
   if [ -n "${ENABLE_METRICS}" ] && [ "${ENABLE_METRICS}" = true ]; then
     sed -i -e "s|enable_metrics: false|enable_metrics: true|g" "${CONF}"

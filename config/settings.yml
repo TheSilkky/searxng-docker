@@ -10,6 +10,6 @@ general:
   debug: false
   instance_name: "SearXNG"
   privacypolicy_url: false
-  donation_url: false
+  donation_url: "https://docs.searxng.org/donate.html"
   contact_url: false
   enable_metrics: false
