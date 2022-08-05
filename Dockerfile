@@ -50,21 +50,21 @@ RUN apk add --no-cache \
 
 WORKDIR /searxng
 
+COPY /config/ /searxng
+COPY /startup.sh /searxng/startup.sh
+
 # Add an unprivileged user and set directory permissions
 RUN adduser --disabled-password --gecos "" --home /searxng searxng \
-    && chown -R searxng:searxng /searxng
+    && chown -R searxng:searxng /searxng \
+    && chmod +x /searxng/startup.sh
 
 USER searxng
 
 # Copy dependency wheels from builder stage
 COPY --from=builder /searxng/requirements.txt /searxng/requirements.txt
 COPY --from=builder /searxng/wheels/ /searxng/wheels
-COPY /config/ /searxng
-COPY /startup.sh /searxng/startup.sh
-
 # Install dependencies
-RUN pip install --user --no-index --find-links=/searxng/wheels -r requirements.txt \
-    && chmod +x /searxng/startup.sh
+RUN pip install --user --no-index --find-links=/searxng/wheels -r requirements.txt
 
 COPY --from=builder /searxng/searx/ /searxng/searx
 
