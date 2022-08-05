@@ -20,7 +20,7 @@
 | `ENABLE_METRICS`     |             |
 
 ### UI settings
-- **To customize UI settings set `UI_SETTINGS=true`**
+- To customize UI settings set `UI_SETTINGS=true`
 
 | Variable             | Description |
 |----------------------|-------------|
@@ -36,7 +36,7 @@
 | `SIMPLE_STYLE`       |             |
 
 ### Search settings
-- **To customize search settings set `SEARCH_SETTINGS=true`**
+- To customize search settings set `SEARCH_SETTINGS=true`
 
 | Variable               | Description |
 |------------------------|-------------|
@@ -49,7 +49,7 @@
 | `AVAILABLE_LANGUAGES`  |             |
 
 ### Brand settings
-- **To customize brand settings set `BRAND_SETTINGS=true`**
+- To customize brand settings set `BRAND_SETTINGS=true`
 
 | Variable               | Description |
 |------------------------|-------------|
@@ -59,7 +59,7 @@
 | `WIKI_URL`             |             |
 
 ### Outgoing settings
-- **To customize outgoing settings set `OUTGOING_SETTINGS=true`**
+- To customize outgoing settings set `OUTGOING_SETTINGS=true`
 
 | Variable           | Description |
 |--------------------|-------------|
