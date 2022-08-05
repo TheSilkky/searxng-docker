@@ -14,26 +14,24 @@ RUN apk add --no-cache \
     libxslt \
     openssl \
     brotli \
-    git
+    git \
+    && pip install --upgrade pip wheel setuptools
 
 ADD https://api.github.com/repos/searxng/searxng/git/refs/head /cachebreak
 RUN git clone https://github.com/searxng/searxng.git /searxng
 
 WORKDIR /searxng
 
-# Create dependency wheels & install
-RUN pip install --upgrade pip wheel setuptools \
-    && pip wheel --wheel-dir=/searxng/wheels -r requirements.txt \
-    && pip install --no-index --find-links=/searxng/wheels -r requirements.txt
-
-# Compress static files
-RUN find /searxng/searx/static -a \( -name '*.html' -o -name '*.css' -o -name '*.js' \
+RUN \
+    # Create & install dependency wheels
+    pip wheel --wheel-dir=/searxng/wheels -r requirements.txt \
+    && pip install --no-index --find-links=/searxng/wheels -r requirements.txt \
+    # Freeze SearXNG version
+    && python3 -m searx.version freeze \
+    # Compress static files
+    && find /searxng/searx/static -a \( -name '*.html' -o -name '*.css' -o -name '*.js' \
     -o -name '*.svg' -o -name '*.ttf' -o -name '*.eot' \) \
     -type f -exec gzip -9 -k {} \+ -exec brotli --best {} \+
-
-# Lock SearXNG version
-RUN python3 -c "import six; import searx.version; six.print_(searx.version.VERSION_STRING)" > VERSION \
-    && python3 -m searx.version freeze
 
 ####################################################################################################
 ## Final image
@@ -47,30 +45,28 @@ RUN apk add --no-cache \
     openssl \
     uwsgi \
     uwsgi-python3 \
-    tini
+    tini \
+    && pip install --upgrade pip
 
 WORKDIR /searxng
 
-COPY --from=builder /searxng/searx/ /searxng/searx
-COPY --from=builder /searxng/VERSION /searxng/VERSION
-COPY /config/ /searxng
-COPY /startup.sh /searxng/startup.sh
-
-# Copy dependency wheels from builder stage
-COPY --from=builder /searxng/wheels/ /searxng/wheels
-COPY --from=builder /searxng/requirements.txt /searxng/requirements.txt
-
-RUN pip install --upgrade pip
-
 # Add an unprivileged user and set directory permissions
 RUN adduser --disabled-password --gecos "" --home /searxng searxng \
-    && chown -R searxng:searxng /searxng \
-    && chmod +x /searxng/startup.sh
+    && chown -R searxng:searxng /searxng
 
 USER searxng
 
+# Copy dependency wheels from builder stage
+COPY --from=builder /searxng/requirements.txt /searxng/requirements.txt
+COPY --from=builder /searxng/wheels/ /searxng/wheels
+COPY /config/ /searxng
+COPY /startup.sh /searxng/startup.sh
+
 # Install dependencies
-RUN pip install --user --no-index --find-links=/searxng/wheels -r requirements.txt
+RUN pip install --user --no-index --find-links=/searxng/wheels -r requirements.txt \
+    && chmod +x /searxng/startup.sh
+
+COPY --from=builder /searxng/searx/ /searxng/searx
 
 ENTRYPOINT ["/sbin/tini", "--"]
 
