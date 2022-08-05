@@ -39,6 +39,9 @@ patch_searxng_settings() {
   if [ -n "${DONATION_URL}" ]; then
     sed -i -e "s|donation_url: false|donation_url: \"${DONATION_URL}\"|g" "${CONF}"
   fi
+  if [ -n "${ENABLE_METRICS}" ] && [ "${ENABLE_METRICS}" = true ]; then
+    sed -i -e "s|enable_metrics: false|enable_metrics: true|g" "${CONF}"
+  fi
 
   # UI settings
   if [ -n "${CUSTOM_UI}" ] && [ "${CUSTOM_UI}" = "true" ]; then
