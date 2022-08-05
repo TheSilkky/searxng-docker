@@ -54,6 +54,7 @@ WORKDIR /searxng
 COPY --from=builder /searxng/searx/ /searxng/searx
 COPY --from=builder /searxng/VERSION /searxng/VERSION
 COPY /config/ /searxng
+COPY /startup.sh /searxng/startup.sh
 
 # Copy dependency wheels from builder stage
 COPY --from=builder /searxng/wheels/ /searxng/wheels
