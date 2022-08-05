@@ -83,6 +83,6 @@ A Redis database can be connected by a URL, this is currently primarily used for
 ### Custom
 Useful for adding more advanced configuration, such as customizing engine settings.
 
-| Variable               | Description                                                                                                                 |
-|------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| `CUSTOM_SETTINGS_PATH` | Path to a custom SearXNG config file, the contents of this file will be appended to the end of the generated `settings.yml` |
+| Variable          | Description                                                                                                                  |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------|
+| `CUSTOM_SETTINGS` | Path to custom SearXNG config files, the contents of these files will be appended to the end of the generated `settings.yml` |

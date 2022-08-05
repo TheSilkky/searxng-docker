@@ -118,7 +118,7 @@ EOF
       for i in $(echo "${AVAILABLE_LANGUAGES}" | sed "s|,| |g")
       do
         cat >> "${CONF}" << EOF
-    - "$i"
+    - "${i}"
 EOF
       done
     fi
@@ -177,7 +177,7 @@ EOF
       for i in $(echo "${OUTGOING_PROXIES}" | sed "s|,| |g")
       do
         cat >> "${CONF}" << EOF
-      - "$i"
+      - "${i}"
 EOF
       done
     fi
@@ -193,8 +193,11 @@ EOF
   fi
 
   # Custom settings
-  if [ -n "${CUSTOM_SETTINGS_PATH}" ]; then
-    (printf "\n"; cat "${CUSTOM_SETTINGS_PATH}") >> "${CONF}"
+  if [ -n "${CUSTOM_SETTINGS}" ]; then
+    for i in $(echo "${CUSTOM_SETTINGS}" | sed "s|,| |g")
+    do
+      (printf "\n"; cat "${i}") >> "${CONF}"
+    done
   fi
 }
 
