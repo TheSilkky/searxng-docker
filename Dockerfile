@@ -1,7 +1,10 @@
+ARG PYTHON_VERSION=3.10.6
+ARG ALPINE_VERSION=3.16
+
 ####################################################################################################
 ## Builder image
 ####################################################################################################
-FROM python:3.10.6-alpine3.16 AS builder
+FROM python:${PYTHON_VERSION}-alpine${ALPINE_VERSION} AS builder
 
 RUN apk add --no-cache \
     ca-certificates \
@@ -37,7 +40,7 @@ RUN \
 ####################################################################################################
 ## Final image
 ####################################################################################################
-FROM python:3.10.6-alpine3.16
+FROM python:${PYTHON_VERSION}-alpine${ALPINE_VERSION}
 
 RUN apk add --no-cache \
     ca-certificates \
