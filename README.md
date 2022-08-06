@@ -6,8 +6,6 @@
 
 [SearXNG](https://docs.searxng.org/) is a free internet metasearch engine which aggregates results from various search services and databases. Users are neither tracked nor profiled.
 
-
-
 ## Environment Variables
 
 ### Server
