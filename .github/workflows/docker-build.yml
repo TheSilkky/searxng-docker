@@ -85,7 +85,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.6.2
         with:
-          image-ref: thesilkky/searxng:${{ github.sha }}
+          image-ref: thesilkky/searxng:sha-${{ github.sha }}
           format: sarif
           output: trivy-results.sarif
 
