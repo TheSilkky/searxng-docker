@@ -1,8 +1,8 @@
----
+***
 
 [![SearXNG](https://raw.githubusercontent.com/TheSilkky/searxng-docker/main/assets/searxng.svg)](https://docs.searxng.org/)
 
----
+***
 
 [SearXNG](https://docs.searxng.org/) is a free internet metasearch engine which aggregates results from various search services and databases. Users are neither tracked nor profiled.
 
