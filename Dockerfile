@@ -17,7 +17,9 @@ RUN apk add --no-cache \
     git \
     && pip install --no-cache-dir --upgrade pip wheel setuptools
 
-ADD --keep-git-dir=true https://github.com/searxng/searxng.git /searxng
+# TODO: ADD --keep-git-dir=true https://github.com/searxng/searxng.git /searxng
+ADD https://api.github.com/repos/searxng/searxng/git/refs/head /cachebreak
+RUN git clone https://github.com/searxng/searxng.git /searxng
 
 WORKDIR /searxng
 
