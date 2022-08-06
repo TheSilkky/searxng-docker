@@ -27,7 +27,7 @@ jobs:
             ghcr.io/thesilkky/searxng
             thesilkky/searxng
           tags: |
-            type=schedule
+            type=schedule,pattern={{date 'YYYYMMDD'}}
             type=ref,event=branch
             type=ref,event=pr
             type=sha
