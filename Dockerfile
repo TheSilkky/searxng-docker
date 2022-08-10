@@ -55,11 +55,13 @@ RUN apk add --no-cache \
 WORKDIR /searxng
 
 COPY /config/ /searxng
+COPY /config.py /searxng/config.py
 COPY /startup.sh /searxng/startup.sh
 
 # Add an unprivileged user and set directory permissions
 RUN adduser --disabled-password --gecos "" --home /searxng searxng \
     && chown -R searxng:searxng /searxng \
+    && chmod +x /searxng/config.py \
     && chmod +x /searxng/startup.sh
 
 USER searxng
