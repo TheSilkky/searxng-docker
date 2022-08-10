@@ -130,6 +130,7 @@ def gen_ui_conf():
     INFINITE_SCROLL = os.getenv("UI_INFINITE_SCROLL")
     CENTER_ALIGNMENT = os.getenv("UI_CENTER_ALIGNMENT")
     DEFAULT_LOCALE = os.getenv("UI_DEFAULT_LOCALE")
+    RESULTS_ON_NEW_TAB = os.getenv("UI_RESULTS_ON_NEW_TAB")
     SIMPLE_STYLE = os.getenv("UI_SIMPLE_STYLE")
 
     if QUERY_IN_TITLE is not None:
@@ -140,6 +141,8 @@ def gen_ui_conf():
         ui_conf['center_alignment'] = bool(CENTER_ALIGNMENT)
     if DEFAULT_LOCALE is not None:
         ui_conf['default_locale'] = DEFAULT_LOCALE
+    if RESULTS_ON_NEW_TAB is not None:
+        ui_conf['results_on_new_tab'] = bool(RESULTS_ON_NEW_TAB)
     if SIMPLE_STYLE is not None:
         ui_conf['theme_args'] = {}
         ui_conf['theme_args']['simple_style'] = SIMPLE_STYLE
