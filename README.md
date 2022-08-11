@@ -22,13 +22,13 @@
 | `GENERAL_ENABLE_METRICS`     | `false`                      | Record various anonymous metrics available at `/stats`, `/stats/errors` and `/preferences`                 |
 
 ### Brand
-| Variable                 | Example                                                   | Description                                                            |
-|--------------------------|-----------------------------------------------------------|------------------------------------------------------------------------|
-| `BRAND_NEW_ISSUE_URL`    | `=https://github.com/TheSilkky/searxng-docker/issues/new` |                                                                        |
-| `BRAND_DOCS_URL`         | `https://my-website/docs`                                 | If you host your documentation change this URL                         |
-| `BRAND_PUBLIC_INSTANCES` | `https://my-website/instances`                            | If you host your own [searx.space](https://searx.space) change the URL |
-| `BRAND_WIKI_URL`         | `https://my-website/wiki`                                 | Link to your own wiki (or `false` for none)                            |
-| `BRAND_ISSUE_URL`        | `https://github.com/TheSilkky/searxng-docker/issues`      | If you host your own issue tracker change this URL                     |
+| Variable                 | Example                                                  | Description                                                            |
+|--------------------------|----------------------------------------------------------|------------------------------------------------------------------------|
+| `BRAND_NEW_ISSUE_URL`    | `https://github.com/TheSilkky/searxng-docker/issues/new` |                                                                        |
+| `BRAND_DOCS_URL`         | `https://my-website/docs`                                | If you host your documentation change this URL                         |
+| `BRAND_PUBLIC_INSTANCES` | `https://my-website/instances`                           | If you host your own [searx.space](https://searx.space) change the URL |
+| `BRAND_WIKI_URL`         | `https://my-website/wiki`                                | Link to your own wiki (or `false` for none)                            |
+| `BRAND_ISSUE_URL`        | `https://github.com/TheSilkky/searxng-docker/issues`     | If you host your own issue tracker change this URL                     |
 
 ### Search
 | Variable                      | Example         | Description                                           |
