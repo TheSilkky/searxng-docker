@@ -7,7 +7,7 @@
 [SearXNG](https://docs.searxng.org/) is a free internet metasearch engine which aggregates results from various search services and databases. Users are neither tracked nor profiled.
 
 [![Docker Hub](https://img.shields.io/badge/searxng--docker-docker%20hub-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://hub.docker.com/r/thesilkky/searxng)
-[![GitHub Package](https://img.shields.io/badge/searxng--docker-ghcr.io-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/TheSilkky/searxng-docker/pkgs/container/searxng)
+[![GitHub Package](https://img.shields.io/badge/searxng--docker-github%20package-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/TheSilkky/searxng-docker/pkgs/container/searxng)
 
 ## Environment Variables
 
