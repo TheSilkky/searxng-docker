@@ -3,8 +3,18 @@
 import os
 import secrets
 import sys
+from collections.abc import Mapping
 
 import yaml
+
+
+def update_dict(default_dict, user_dict):
+    for k, v in user_dict.items():
+        if isinstance(v, Mapping):
+            default_dict[k] = update_dict(default_dict.get(k, {}), v)
+        else:
+            default_dict[k] = v
+    return default_dict
 
 
 def gen_general_conf():
@@ -214,6 +224,18 @@ def generate_config():
         config_in['ui'] = ui_conf
     if outgoing_conf is not None:
         config_in['outgoing'] = outgoing_conf
+
+    CUSTOM_CONFIGS = os.getenv("CUSTOM_CONFIGS")
+    if CUSTOM_CONFIGS is not None:
+        custom_configs_arr = CUSTOM_CONFIGS.split(",")
+        for custom_config in custom_configs_arr:
+            with open(custom_config, "r") as custom_config_file:
+                custom_config = yaml.safe_load(custom_config_file)
+                for k, v in custom_config.items():
+                    if k in config_in and isinstance(v, Mapping):
+                        update_dict(config_in[k], v)
+                    else:
+                        config_in[k] = v
 
     config_out = yaml.dump(config_in)
 

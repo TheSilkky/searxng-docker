@@ -80,3 +80,10 @@ Communication with search engines.
 | `OUTGOING_USING_TOR_PROXY`     |                                                                                                                                                                                     |
 | `OUTGOING_EXTRA_PROXY_TIMEOUT` |                                                                                                                                                                                     |
 | `OUTGOING_SOURCE_IPS`          |                                                                                                                                                                                     |
+
+### Custom
+Useful for adding more advanced configuration, such as customizing engine settings.
+
+| Variable         | Description                                                                                                                                                                  |
+|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `CUSTOM_CONFIGS` | Path too one or multiple custom SearXNG config files. The options will be merged over the generated config file. eg. `CUSTOM_CONFIS=/searxng/engines.yml,/searxng/extra.yml` |
