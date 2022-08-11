@@ -32,6 +32,8 @@ RUN \
     && pip install --no-cache-dir --no-index --find-links=/searxng/wheels -r requirements.txt \
     # Freeze SearXNG version
     && python3 -m searx.version freeze \
+    # Compile Python modules
+    && python3 -m compileall searx \
     # Compress static files
     && find /searxng/searx/static -a \( -name '*.html' -o -name '*.css' -o -name '*.js' \
     -o -name '*.svg' -o -name '*.ttf' -o -name '*.eot' \) \
