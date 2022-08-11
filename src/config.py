@@ -20,12 +20,12 @@ def update_dict(default_dict, user_dict):
 def gen_general_conf():
     general_conf = {}
 
-    DEBUG = os.getenv("GENERAL_DEBUG")
-    INSTANCE_NAME = os.getenv("GENERAL_INSTANCE_NAME")
-    PRIVACY_POLICY_URL = os.getenv("GENERAL_PRIVACY_POLICY_URL")
-    DONATION_URL = os.getenv("GENERAL_DONATION_URL")
-    CONTACT_URL = os.getenv("GENERAL_CONTACT_URL")
-    ENABLE_METRICS = os.getenv("GENERAL_ENABLE_METRICS")
+    DEBUG = os.getenv('GENERAL_DEBUG')
+    INSTANCE_NAME = os.getenv('GENERAL_INSTANCE_NAME')
+    PRIVACY_POLICY_URL = os.getenv('GENERAL_PRIVACY_POLICY_URL')
+    DONATION_URL = os.getenv('GENERAL_DONATION_URL')
+    CONTACT_URL = os.getenv('GENERAL_CONTACT_URL')
+    ENABLE_METRICS = os.getenv('GENERAL_ENABLE_METRICS')
 
     if DEBUG is not None:
         general_conf['debug'] = bool(DEBUG)
@@ -46,11 +46,11 @@ def gen_general_conf():
 def gen_brand_conf():
     brand_conf = {}
 
-    NEW_ISSUE_URL = os.getenv("BRAND_NEW_ISSUE_URL")
-    DOCS_URL = os.getenv("BRAND_DOCS_URL")
-    PUBLIC_INSTANCES = os.getenv("BRAND_PUBLIC_INSTANCES")
-    WIKI_URL = os.getenv("BRAND_WIKI_URL")
-    ISSUE_URL = os.getenv("BRAND_ISSUE_URL")
+    NEW_ISSUE_URL = os.getenv('BRAND_NEW_ISSUE_URL')
+    DOCS_URL = os.getenv('BRAND_DOCS_URL')
+    PUBLIC_INSTANCES = os.getenv('BRAND_PUBLIC_INSTANCES')
+    WIKI_URL = os.getenv('BRAND_WIKI_URL')
+    ISSUE_URL = os.getenv('BRAND_ISSUE_URL')
 
     if NEW_ISSUE_URL is not None:
         brand_conf['new_issue_url'] = NEW_ISSUE_URL
@@ -69,14 +69,14 @@ def gen_brand_conf():
 def gen_search_conf():
     search_conf = {}
 
-    SAFE_SEARCH = os.getenv("SEARCH_SAFE_SEARCH")
-    AUTOCOMPLETE = os.getenv("SEARCH_AUTOCOMPLETE")
-    AUTOCOMPLETE_MIN = os.getenv("SEARCH_AUTOCOMPLETE_MIN")
-    DEFAULT_LANG = os.getenv("SEARCH_DEFAULT_LANG")
-    LANGUAGES = os.getenv("SEARCH_LANGUAGES")
-    BAN_TIME_ON_FAIL = os.getenv("SEARCH_BAN_TIME_ON_FAIL")
-    MAX_BAN_TIME_ON_FAIL = os.getenv("SEARCH_MAX_BAN_TIME_ON_FAIL")
-    FORMATS = os.getenv("SEARCH_FORMATS")
+    SAFE_SEARCH = os.getenv('SEARCH_SAFE_SEARCH')
+    AUTOCOMPLETE = os.getenv('SEARCH_AUTOCOMPLETE')
+    AUTOCOMPLETE_MIN = os.getenv('SEARCH_AUTOCOMPLETE_MIN')
+    DEFAULT_LANG = os.getenv('SEARCH_DEFAULT_LANG')
+    LANGUAGES = os.getenv('SEARCH_LANGUAGES')
+    BAN_TIME_ON_FAIL = os.getenv('SEARCH_BAN_TIME_ON_FAIL')
+    MAX_BAN_TIME_ON_FAIL = os.getenv('SEARCH_MAX_BAN_TIME_ON_FAIL')
+    FORMATS = os.getenv('SEARCH_FORMATS')
 
     if SAFE_SEARCH is not None:
         search_conf['safe_search'] = int(SAFE_SEARCH)
@@ -101,13 +101,13 @@ def gen_search_conf():
 
 
 def gen_server_conf():
-    server_conf = {"secret_key": secrets.token_hex(32)}
+    server_conf = {'secret_key': secrets.token_hex(32)}
 
-    BASE_URL = os.getenv("SERVER_BASE_URL")
-    LIMITER = os.getenv("SERVER_LIMITER")
-    IMAGE_PROXY = os.getenv("SERVER_IMAGE_PROXY")
-    HTTP_PROTOCOL_VERSION = os.getenv("SERVER_HTTP_PROTOCOL_VERSION")
-    METHOD = os.getenv("SERVER_METHOD")
+    BASE_URL = os.getenv('SERVER_BASE_URL')
+    LIMITER = os.getenv('SERVER_LIMITER')
+    IMAGE_PROXY = os.getenv('SERVER_IMAGE_PROXY')
+    HTTP_PROTOCOL_VERSION = os.getenv('SERVER_HTTP_PROTOCOL_VERSION')
+    METHOD = os.getenv('SERVER_METHOD')
 
     if BASE_URL is not None:
         server_conf['base_url'] = BASE_URL
@@ -126,7 +126,7 @@ def gen_server_conf():
 def gen_redis_conf():
     redis_conf = {}
 
-    URL = os.getenv("REDIS_URL")
+    URL = os.getenv('REDIS_URL')
 
     if URL is not None:
         redis_conf['url'] = URL
@@ -137,12 +137,12 @@ def gen_redis_conf():
 def gen_ui_conf():
     ui_conf = {}
 
-    QUERY_IN_TITLE = os.getenv("UI_QUERY_IN_TITLE")
-    INFINITE_SCROLL = os.getenv("UI_INFINITE_SCROLL")
-    CENTER_ALIGNMENT = os.getenv("UI_CENTER_ALIGNMENT")
-    DEFAULT_LOCALE = os.getenv("UI_DEFAULT_LOCALE")
-    RESULTS_ON_NEW_TAB = os.getenv("UI_RESULTS_ON_NEW_TAB")
-    SIMPLE_STYLE = os.getenv("UI_SIMPLE_STYLE")
+    QUERY_IN_TITLE = os.getenv('UI_QUERY_IN_TITLE')
+    INFINITE_SCROLL = os.getenv('UI_INFINITE_SCROLL')
+    CENTER_ALIGNMENT = os.getenv('UI_CENTER_ALIGNMENT')
+    DEFAULT_LOCALE = os.getenv('UI_DEFAULT_LOCALE')
+    RESULTS_ON_NEW_TAB = os.getenv('UI_RESULTS_ON_NEW_TAB')
+    SIMPLE_STYLE = os.getenv('UI_SIMPLE_STYLE')
 
     if QUERY_IN_TITLE is not None:
         ui_conf['query_in_title'] = bool(QUERY_IN_TITLE)
@@ -164,15 +164,15 @@ def gen_ui_conf():
 def gen_outgoing_conf():
     outgoing_conf = {}
 
-    REQUEST_TIMEOUT = os.getenv("OUTGOING_REQUEST_TIMEOUT")
-    USERAGENT_SUFFIX = os.getenv("OUTGOING_USERAGENT_SUFFIX")
-    POOL_CONNECTIONS = os.getenv("OUTGOING_POOL_CONNECTIONS")
-    POOL_MAXSIZE = os.getenv("OUTGOING_POOL_MAXSIZE")
-    ENABLE_HTTP2 = os.getenv("OUTGOING_ENABLE_HTTP2")
-    PROXIES = os.getenv("OUTGOING_PROXIES")
-    USING_TOR_PROXY = os.getenv("OUTGOING_USING_TOR_PROXY")
-    EXTRA_PROXY_TIMEOUT = os.getenv("OUTGOING_EXTRA_PROXY_TIMEOUT")
-    SOURCE_IPS = os.getenv("OUTGOING_SOURCE_IPS")
+    REQUEST_TIMEOUT = os.getenv('OUTGOING_REQUEST_TIMEOUT')
+    USERAGENT_SUFFIX = os.getenv('OUTGOING_USERAGENT_SUFFIX')
+    POOL_CONNECTIONS = os.getenv('OUTGOING_POOL_CONNECTIONS')
+    POOL_MAXSIZE = os.getenv('OUTGOING_POOL_MAXSIZE')
+    ENABLE_HTTP2 = os.getenv('OUTGOING_ENABLE_HTTP2')
+    PROXIES = os.getenv('OUTGOING_PROXIES')
+    USING_TOR_PROXY = os.getenv('OUTGOING_USING_TOR_PROXY')
+    EXTRA_PROXY_TIMEOUT = os.getenv('OUTGOING_EXTRA_PROXY_TIMEOUT')
+    SOURCE_IPS = os.getenv('OUTGOING_SOURCE_IPS')
 
     if REQUEST_TIMEOUT is not None:
         outgoing_conf['request_timeout'] = float(REQUEST_TIMEOUT)
@@ -200,7 +200,7 @@ def gen_outgoing_conf():
 
 
 def generate_config():
-    config_in = {"use_default_settings": True}
+    config_in = {'use_default_settings': True}
 
     general_conf = gen_general_conf()
     brand_conf = gen_brand_conf()
@@ -225,11 +225,11 @@ def generate_config():
     if outgoing_conf is not None:
         config_in['outgoing'] = outgoing_conf
 
-    CUSTOM_CONFIGS = os.getenv("CUSTOM_CONFIGS")
+    CUSTOM_CONFIGS = os.getenv('CUSTOM_CONFIGS')
     if CUSTOM_CONFIGS is not None:
-        custom_configs_arr = CUSTOM_CONFIGS.split(",")
+        custom_configs_arr = CUSTOM_CONFIGS.split(',')
         for custom_config in custom_configs_arr:
-            with open(custom_config, "r") as custom_config_file:
+            with open(custom_config, 'r') as custom_config_file:
                 custom_config = yaml.safe_load(custom_config_file)
                 for k, v in custom_config.items():
                     if k in config_in and isinstance(v, Mapping):
@@ -245,5 +245,5 @@ def generate_config():
 if __name__ == '__main__':
     settings_path = sys.argv[1]
     config = generate_config()
-    with open(settings_path, "w") as searxng_settings:
+    with open(settings_path, 'w') as searxng_settings:
         searxng_settings.write(config)
