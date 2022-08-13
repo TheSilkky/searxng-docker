@@ -6,15 +6,7 @@ import sys
 from collections.abc import Mapping
 
 import yaml
-
-
-def update_dict(default_dict, user_dict):
-    for k, v in user_dict.items():
-        if isinstance(v, Mapping):
-            default_dict[k] = update_dict(default_dict.get(k, {}), v)
-        else:
-            default_dict[k] = v
-    return default_dict
+from searx.settings_loader import update_dict
 
 
 def gen_general_conf():

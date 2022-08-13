@@ -1,0 +1,76 @@
+# Included list of modified engine options to improve reliability,
+# based on stats from popular instances and open SearXNG issues.
+engines:
+
+## Disabled engines
+
+  # Slow, times out often
+  # https://github.com/searxng/searxng/issues/1290
+  - name: wikidata
+    disabled: true
+
+  # Sometimes returns NSFW images, even when SafeSearch is enabled
+  # https://github.com/searxng/searxng/issues/644
+  - name: deviantart
+    disabled: true
+
+  # Rate limited
+  # https://github.com/searxng/searxng/issues/1417
+  - name: btdigg
+    disabled: true
+
+  # Redundant, slows down response time
+  - name: vimeo
+    disabled: true
+
+  # Prefer google results, slows down response time
+  - name: duckduckgo
+    disabled: true
+
+  # Prefer google results, slows down response time
+  - name: brave
+    disabled: true
+
+  - name: currency
+    disabled: true
+
+  - name: library of congress
+    disabled: true
+
+  - name: dictzone
+    disabled: true
+
+  - name: genius
+    disabled: true
+
+  - name: artic
+    disabled: true
+
+  - name: flickr
+    disabled: true
+
+  - name: unsplash
+    disabled: true
+
+  - name: gentoo
+    disabled: true
+
+  - name: openverse
+    disabled: true
+
+  - name: google videos
+    disabled: true
+
+  - name: yahoo news
+    disabled: true
+
+  - name: tineye
+    disabled: true
+
+## Enabled engines
+
+  - name: bing
+    disabled: false
+
+  - name: fdroid
+    disabled: false
