@@ -2,26 +2,10 @@
 # based on stats from popular instances and open SearXNG issues.
 engines:
 
-## Disabled engines
+## General
 
-  # Slow, times out often
-  # https://github.com/searxng/searxng/issues/1290
-  - name: wikidata
-    disabled: true
-
-  # Sometimes returns NSFW images, even when SafeSearch is enabled
-  # https://github.com/searxng/searxng/issues/644
-  - name: deviantart
-    disabled: true
-
-  # Rate limited
-  # https://github.com/searxng/searxng/issues/1417
-  - name: btdigg
-    disabled: true
-
-  # Redundant, slows down response time
-  - name: vimeo
-    disabled: true
+  - name: bing
+    disabled: false
 
   # Prefer google results, slows down response time
   - name: duckduckgo
@@ -31,16 +15,25 @@ engines:
   - name: brave
     disabled: true
 
-  - name: currency
+  # Slow, times out often
+  # https://github.com/searxng/searxng/issues/1290
+  - name: wikidata
     disabled: true
 
-  - name: library of congress
+  - name: currency
     disabled: true
 
   - name: dictzone
     disabled: true
 
-  - name: genius
+  - name: tineye
+    disabled: true
+
+## Images
+
+  # Sometimes returns NSFW images, even when SafeSearch is enabled
+  # https://github.com/searxng/searxng/issues/644
+  - name: deviantart
     disabled: true
 
   - name: artic
@@ -49,28 +42,45 @@ engines:
   - name: flickr
     disabled: true
 
-  - name: unsplash
+  - name: library of congress
     disabled: true
 
-  - name: gentoo
+  - name: unsplash
     disabled: true
 
   - name: openverse
     disabled: true
 
+  ## Videos
+
   - name: google videos
     disabled: true
+
+  # Redundant, slows down response time
+  - name: vimeo
+    disabled: true
+
+## News
 
   - name: yahoo news
     disabled: true
 
-  - name: tineye
+## Music
+
+  - name: genius
     disabled: true
 
-## Enabled engines
+## IT
 
-  - name: bing
-    disabled: false
+  - name: gentoo
+    disabled: true
+
+## Files
 
   - name: fdroid
     disabled: false
+
+  # Rate limited
+  # https://github.com/searxng/searxng/issues/1417
+  - name: btdigg
+    disabled: true
