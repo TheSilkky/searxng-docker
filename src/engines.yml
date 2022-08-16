@@ -4,6 +4,7 @@ engines:
 
 ## General
 
+  # Backup for when Google doesn't work
   - name: bing
     disabled: false
 
@@ -20,38 +21,38 @@ engines:
   - name: wikidata
     disabled: true
 
-  - name: currency
-    disabled: true
-
   - name: dictzone
-    disabled: true
-
-  - name: tineye
     disabled: true
 
 ## Images
 
+  # Redundant, slows down response time
+  - name: artic
+    disabled: true
+
+  # Redundant, slows down response time
   # Sometimes returns NSFW images, even when SafeSearch is enabled
   # https://github.com/searxng/searxng/issues/644
   - name: deviantart
     disabled: true
 
-  - name: artic
-    disabled: true
-
+  # Redundant, slows down response time
   - name: flickr
     disabled: true
 
+  # Redundant, slows down response time
   - name: library of congress
     disabled: true
 
-  - name: unsplash
-    disabled: true
-
+  # Redundant, slows down response time
   - name: openverse
     disabled: true
 
-  ## Videos
+  # Redundant, slows down response time
+  - name: unsplash
+    disabled: true
+
+## Videos
 
   - name: google videos
     disabled: true
@@ -63,16 +64,6 @@ engines:
 ## News
 
   - name: yahoo news
-    disabled: true
-
-## Music
-
-  - name: genius
-    disabled: true
-
-## IT
-
-  - name: gentoo
     disabled: true
 
 ## Files
