@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# Very silly script
+# 0/10
+
 import os
 import secrets
 import sys
