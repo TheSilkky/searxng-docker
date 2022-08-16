@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+
+  searxng:
+    image: thesilkky/searxng:latest
+    restart: always
+    hostname: searxng
+    container_name: searxng
+    ports:
+      - '8080:8080'
+    environment:
+      # General
+      - GENERAL_INSTANCE_NAME=SearXNG Local
+      # Search
+      - SEARCH_SAFE_SEARCH=1
+      - SEARCH_AUTOCOMPLETE=google
+      # Server
+      - SERVER_IMAGE_PROXY=true
+      # UI
+      - UI_QUERY_IN_TITLE=true
+      - UI_SIMPLE_STYLE=dark
