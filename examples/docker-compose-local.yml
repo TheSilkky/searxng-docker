@@ -20,3 +20,5 @@ services:
       # UI
       - UI_QUERY_IN_TITLE=true
       - UI_SIMPLE_STYLE=dark
+      # Test engines
+      - CUSTOM_CONFIGS=/searxng/engines.yml
